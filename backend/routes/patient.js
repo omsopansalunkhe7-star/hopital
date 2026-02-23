@@ -1,9 +1,11 @@
+
 const express = require("express");
 const router = express.Router();
 const Patient = require("../models/patient");
 const Doctor = require("../models/doctor");
+const { hashPassword, comparePassword } = require("../middleware/hashPassword");
 
-router.post("/register", (req, res) => {
+router.post("/register", hashPassword, (req, res) => {
     const { email, password } = req.body;
     Patient.findOne({ email }).then((data) => {
         if (!data) {
@@ -15,11 +17,10 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    const { email, password } = req.body;
-    Patient.findOne({ email }).then((data) => {
-        if (!data) return res.json({ status: "emailNotRegistered" });
-        if (data.password === password) return res.json({ data, status: "authenticated" });
-        return res.json({ status: "wrongPassword" });
+    comparePassword(Patient)(req, res, () => {
+        // This callback is executed after comparePassword middleware succeeds
+        const { user } = req; // user is attached by the middleware
+        res.json({ data: user, status: "authenticated" });
     });
 });
 
