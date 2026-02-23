@@ -1,0 +1,17 @@
+{
+  "name": "e-health-system",
+  "version": "1.0.0",
+  "description": "E-Health System",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && (cd frontend && npm install) && (cd backend && npm install)",
+    "start": "concurrently \"npm start --prefix frontend\" \"npm start --prefix backend\"",
+    "dev": "npm run install-all && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
