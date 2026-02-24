@@ -1,0 +1,354 @@
+{
+  "info": {
+    "name": "Hospital Management System API",
+    "description": "API collection for testing Patient, Doctor, Hospital, Insurance, and Admin routes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Patient",
+      "item": [
+        {
+          "name": "Register Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"patient@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/patient/register", "host": ["{{baseUrl}}"], "path": ["patient", "register"] }
+          }
+        },
+        {
+          "name": "Login Patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"patient@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/patient/login", "host": ["{{baseUrl}}"], "path": ["patient", "login"] }
+          }
+        },
+        {
+          "name": "Patient Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"patient@example.com\",\n  \"sessionKey\": \"your_session_key_here\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/patient/session", "host": ["{{baseUrl}}"], "path": ["patient", "session"] }
+          }
+        },
+        {
+          "name": "Update Patient Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"patient@example.com\",\n  \"sessionKey\": \"your_session_key_here\",\n  \"name\": \"John Doe\",\n  \"mobile\": \"1234567890\",\n  \"gender\": \"Male\",\n  \"DOB\": \"1990-01-01\",\n  \"address\": \"123 Main St\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/patient/profile", "host": ["{{baseUrl}}"], "path": ["patient", "profile"] }
+          }
+        },
+        {
+          "name": "Get Doctors List",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/patient/doctors", "host": ["{{baseUrl}}"], "path": ["patient", "doctors"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Doctor",
+      "item": [
+        {
+          "name": "Register Doctor",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"doctor@example.com\",\n  \"password\": \"docpassword\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/doctor/register", "host": ["{{baseUrl}}"], "path": ["doctor", "register"] }
+          }
+        },
+        {
+          "name": "Login Doctor",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"doctor@example.com\",\n  \"password\": \"docpassword\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/doctor/login", "host": ["{{baseUrl}}"], "path": ["doctor", "login"] }
+          }
+        },
+        {
+          "name": "Doctor Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"doctor@example.com\",\n  \"sessionKey\": \"your_session_key_here\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/doctor/session", "host": ["{{baseUrl}}"], "path": ["doctor", "session"] }
+          }
+        },
+        {
+          "name": "Update Doctor Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"doctor@example.com\",\n  \"sessionKey\": \"your_session_key_here\",\n  \"name\": \"Dr. Smith\",\n  \"registration\": \"REG123\",\n  \"degree\": \"MBBS\",\n  \"fees\": \"500\",\n  \"mobile\": \"9876543210\",\n  \"gender\": \"Male\",\n  \"DOB\": \"1980-05-15\",\n  \"address\": \"Hospital Ave\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/doctor/profile", "host": ["{{baseUrl}}"], "path": ["doctor", "profile"] }
+          }
+        },
+        {
+          "name": "Add Medical Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctorEmail\": \"doctor@example.com\",\n  \"sessionKey\": \"your_session_key_here\",\n  \"patientEmail\": \"patient@example.com\",\n  \"name\": \"Blood Pressure\",\n  \"value\": \"120/80\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/doctor/add-report", "host": ["{{baseUrl}}"], "path": ["doctor", "add-report"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Hospital",
+      "item": [
+        {
+          "name": "Register Hospital",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"cityhospital@example.com\",\n  \"password\": \"hospass\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/hospital/register", "host": ["{{baseUrl}}"], "path": ["hospital", "register"] }
+          }
+        },
+        {
+          "name": "Login Hospital",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"cityhospital@example.com\",\n  \"password\": \"hospass\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/hospital/login", "host": ["{{baseUrl}}"], "path": ["hospital", "login"] }
+          }
+        },
+        {
+          "name": "Hospital Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"cityhospital@example.com\",\n  \"sessionKey\": \"your_session_key_here\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/hospital/session", "host": ["{{baseUrl}}"], "path": ["hospital", "session"] }
+          }
+        },
+        {
+          "name": "Update Hospital Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"cityhospital@example.com\",\n  \"sessionKey\": \"your_session_key_here\",\n  \"name\": \"City General Hospital\",\n  \"licenseNumber\": \"LIC9988\",\n  \"mobile\": \"1122334455\",\n  \"address\": \"Healthcare Lane 7\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/hospital/profile", "host": ["{{baseUrl}}"], "path": ["hospital", "profile"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Insurance",
+      "item": [
+        {
+          "name": "Register Insurance",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"insurecorp@example.com\",\n  \"password\": \"insurepass\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/insurance/register", "host": ["{{baseUrl}}"], "path": ["insurance", "register"] }
+          }
+        },
+        {
+          "name": "Login Insurance",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"insurecorp@example.com\",\n  \"password\": \"insurepass\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/insurance/login", "host": ["{{baseUrl}}"], "path": ["insurance", "login"] }
+          }
+        },
+        {
+          "name": "Insurance Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"insurecorp@example.com\",\n  \"sessionKey\": \"your_session_key_here\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/insurance/session", "host": ["{{baseUrl}}"], "path": ["insurance", "session"] }
+          }
+        },
+        {
+          "name": "Update Insurance Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"insurecorp@example.com\",\n  \"sessionKey\": \"your_session_key_here\",\n  \"name\": \"InsureCorp Ltd\",\n  \"licenseNumber\": \"INS1234\",\n  \"mobile\": \"5566778899\",\n  \"address\": \"Finance District\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/insurance/profile", "host": ["{{baseUrl}}"], "path": ["insurance", "profile"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@hospital.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/admin/login", "host": ["{{baseUrl}}"], "path": ["admin", "login"] }
+          }
+        },
+        {
+          "name": "Admin Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionKey\": \"your_admin_session_key\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/admin/session", "host": ["{{baseUrl}}"], "path": ["admin", "session"] }
+          }
+        },
+        {
+          "name": "Get All Patients (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "admin-session-key", "value": "your_admin_session_key" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/patients", "host": ["{{baseUrl}}"], "path": ["admin", "patients"] }
+          }
+        },
+        {
+          "name": "Get All Doctors (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "admin-session-key", "value": "your_admin_session_key" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/doctors", "host": ["{{baseUrl}}"], "path": ["admin", "doctors"] }
+          }
+        },
+        {
+          "name": "Get All Hospitals (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "admin-session-key", "value": "your_admin_session_key" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/hospitals", "host": ["{{baseUrl}}"], "path": ["admin", "hospitals"] }
+          }
+        },
+        {
+          "name": "Get All Insurances (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "admin-session-key", "value": "your_admin_session_key" }
+            ],
+            "url": { "raw": "{{baseUrl}}/admin/insurances", "host": ["{{baseUrl}}"], "path": ["admin", "insurances"] }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}

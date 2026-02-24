@@ -76,7 +76,7 @@ const bodyLogger = (req, res, next) => {
     if (req.body && Object.keys(req.body).length) {
         const sanitized = { ...req.body };
         // Redact sensitive fields
-        for (const key of ["password", "sessionKey", "razorpay_signature", "key_secret"]) {
+        for (const key of ["password", "sessionKey"]) {
             if (key in sanitized) sanitized[key] = "[REDACTED]";
         }
         console.log(`${COLORS.grey}  body:${COLORS.reset}`, JSON.stringify(sanitized));

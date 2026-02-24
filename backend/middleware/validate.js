@@ -160,33 +160,6 @@ const validateInsuranceProfile = (req, res, next) => {
     next();
 };
 
-// ---------- payment routes ----------
-
-const validatePaymentOrder = (req, res, next) => {
-    const { amount } = req.body;
-    const errors = collectErrors({ amount }, ["amount"]);
-
-    if (amount !== undefined && (isNaN(amount) || Number(amount) <= 0))
-        errors.push("'amount' must be a positive number");
-
-    if (errors.length) return fail(res, errors);
-    next();
-};
-
-const validatePaymentVerify = (req, res, next) => {
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, registration, patientEmail, date } = req.body;
-    const errors = collectErrors(
-        { razorpay_order_id, razorpay_payment_id, razorpay_signature, registration, patientEmail, date },
-        ["razorpay_order_id", "razorpay_payment_id", "razorpay_signature", "registration", "patientEmail", "date"]
-    );
-
-    if (patientEmail && !EMAIL_RE.test(patientEmail))
-        errors.push("'patientEmail' is invalid");
-
-    if (errors.length) return fail(res, errors);
-    next();
-};
-
 module.exports = {
     validateRegister,
     validateLogin,
@@ -195,6 +168,4 @@ module.exports = {
     validateDoctorProfile,
     validateHospitalProfile,
     validateInsuranceProfile,
-    validatePaymentOrder,
-    validatePaymentVerify,
 };

@@ -69,7 +69,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen, data, currentPage, setPage }) {
           {/* Logo */}
           <NavLink to="/" className='block p-1 text-m text-slate-200 hover:text-indigo-400'>
             <img src='/logo.png' className='float-left' width="32" height="32" alt=''>
-            </img><span className={`text-sm font-medium ml-3 ${sidebarExpanded ? "" : "lg:opacity-0"} lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200`}>E-Health Management System</span>
+            </img><span className={`text-sm font-medium ml-3 ${sidebarExpanded ? "" : "lg:opacity-0"} lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200`}>HEALTH CARE RECOARD 
+MANAGEMENT AND INSURANCE CLAIM</span>
           </NavLink>
         </div>
 

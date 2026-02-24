@@ -4,10 +4,9 @@
  * For multi-process / clustered deployments, replace the in-memory store
  * with a Redis-backed solution (e.g. rate-limiter-flexible + ioredis).
  *
- * Three limiters are exported:
+ * Two limiters are exported:
  *  - globalLimiter   : applied to every route (generous ceiling)
  *  - authLimiter     : stricter limit for login / register endpoints
- *  - paymentLimiter  : very strict limit for payment endpoints
  */
 
 /**
@@ -80,11 +79,4 @@ const authLimiter = createLimiter({
     message: "Too many authentication attempts, please try again in 15 minutes",
 });
 
-/** Applied to payment routes. */
-const paymentLimiter = createLimiter({
-    windowMs: 60 * 60 * 1000, // 1 hour
-    max: 30,
-    message: "Too many payment requests, please try again later",
-});
-
-module.exports = { globalLimiter, authLimiter, paymentLimiter };
+module.exports = { globalLimiter, authLimiter };
