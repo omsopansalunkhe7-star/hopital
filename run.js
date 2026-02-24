@@ -14,17 +14,13 @@ function runService(name, dir, command, args) {
   });
 
   child.on('exit', (code) => {
-    console.log(`${name} exited with code ${code}`);
+    if (code !== 0) {
+        console.error(`${name} exited with code ${code}`);
+    } else {
+        console.log(`${name} exited successfully.`);
+    }
   });
-
-  return child;
 }
 
-const backend = runService('Backend', 'backend', 'npm', ['start']);
-const frontend = runService('Frontend', 'frontend', 'npm', ['start']);
-
-process.on('SIGINT', () => {
-  backend.kill();
-  frontend.kill();
-  process.exit();
-});
+runService('backend', 'backend', 'node', ['index.js']);
+runService('frontend', 'frontend', 'npm', ['start']);

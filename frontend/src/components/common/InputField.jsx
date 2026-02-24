@@ -1,18 +1,18 @@
+
 import React from 'react';
 
-const InputField = ({ label, type, value, onChange, placeholder }) => {
+const InputField = ({ label, type = 'text', value, onChange, placeholder, name }) => {
   return (
-    <div className="mb-4">
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={label}>
-        {label}
-      </label>
+    <div>
+      <label htmlFor={name} className="block text-sm font-medium text-gray-700">{label}</label>
       <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id={label}
         type={type}
-        placeholder={placeholder}
+        name={name}
+        id={name}
         value={value}
         onChange={onChange}
+        placeholder={placeholder}
+        className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
       />
     </div>
   );
