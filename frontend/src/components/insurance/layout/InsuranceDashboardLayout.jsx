@@ -1,16 +1,16 @@
 import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
-const DoctorDashboardLayout = () => {
+const InsuranceDashboardLayout = () => {
   const navigate = useNavigate();
-  const doctorName = localStorage.getItem('name') || 'Doctor';
+  const companyName = localStorage.getItem('name') || 'Insurance Company';
 
   const navigation = [
-    { name: 'Dashboard', href: '/doctor/dashboard' },
-    { name: 'My Profile', href: '/doctor/profile' },
-    { name: 'Appointments', href: '/doctor/appointments' },
-    { name: 'Patients', href: '/doctor/patients' },
-    { name: 'Documents', href: '/doctor/documents' },
+    { name: 'Dashboard', href: '/insurance/dashboard' },
+    { name: 'Claims', href: '/insurance/claims' },
+    { name: 'Patients', href: '/insurance/patients' },
+    { name: 'Profile', href: '/insurance/profile' },
+    { name: 'Documents', href: '/insurance/documents' },
   ];
 
   const handleLogout = () => {
@@ -23,8 +23,8 @@ const DoctorDashboardLayout = () => {
       {/* Sidebar */}
       <div className="w-64 bg-white shadow-lg">
         <div className="p-6 border-b-2 border-indigo-500">
-          <h2 className="text-2xl font-bold text-indigo-600">Doctor's Panel</h2>
-          <p className="text-sm text-gray-600 mt-2">Welcome, Dr. {doctorName}</p>
+          <h2 className="text-2xl font-bold text-indigo-600">Insurance Portal</h2>
+          <p className="text-sm text-gray-600 mt-2">{companyName}</p>
         </div>
         <nav className="mt-5">
           <ul className="space-y-2 px-4">
@@ -66,4 +66,4 @@ const DoctorDashboardLayout = () => {
   );
 };
 
-export default DoctorDashboardLayout;
+export default InsuranceDashboardLayout;

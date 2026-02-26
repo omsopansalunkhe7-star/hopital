@@ -6,7 +6,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faUserDoctor, faHospital, faHeartCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faUserDoctor, faHospital, faHeartCircleCheck, faHome } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom';
 
 const users = [
@@ -31,7 +31,8 @@ export default function Header() {
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <NavLink to="/" className="-m-1.5 p-1.5 text-sm font-semibold leading-6 text-gray-900">
+          <NavLink to="/" className="-m-1.5 p-1.5 text-sm font-semibold leading-6 text-gray-900 flex items-center">
+            <FontAwesomeIcon icon={faHome} className="mr-2" />
             <span className="sr-only">HEALTH CARE RECOARD 
 MANAGEMENT AND INSURANCE CLAIM</span>
             <img className="h-8 w-auto float-left" src="/logo.png" alt="" />HEALTH CARE RECOARD 
@@ -160,6 +161,12 @@ MANAGEMENT AND INSURANCE CLAIM
                 </Disclosure>
               </div>
               <div className="py-6">
+                <NavLink to="/"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 flex items-center"
+                >
+                  <FontAwesomeIcon icon={faHome} className="mr-2" />
+                  Home
+                </NavLink>
                 <NavLink to="/"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >

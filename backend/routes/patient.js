@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Patient = require("../models/patient");
 const Doctor = require("../models/doctor");
+const InsuranceRequest = require("../models/insuranceRequest");
 const { hashPassword, comparePassword } = require("../middleware/hashPassword");
 
 router.post("/register", hashPassword, (req, res) => {
@@ -45,6 +46,23 @@ router.post("/profile", (req, res) => {
 router.get("/doctors", (req, res) => {
     Doctor.find({}, { password: 0, sessionKey: 0 }).then((data) => {
         if (data) res.json(data);
+    });
+});
+
+// insurance application route
+router.post("/apply-insurance", (req, res) => {
+    const { email, sessionKey } = req.body;
+    // basic session check, reuse existing logic
+    Patient.findOne({ email }).then((patient) => {
+        if (!patient || patient.sessionKey !== sessionKey) {
+            return res.json({ status: "unauthenticated" });
+        }
+        InsuranceRequest.create({ patientEmail: email })
+            .then(() => res.json({ status: "applied" }))
+            .catch((err) => {
+                console.error(err);
+                res.status(500).json({ status: "error" });
+            });
     });
 });
 

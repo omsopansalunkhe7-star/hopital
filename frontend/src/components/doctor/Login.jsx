@@ -1,36 +1,34 @@
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import Header from '../Header'
-import axios from 'axios'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { useState } from 'react';
 
 export default function Login() {
   localStorage.removeItem("currentPage");
   const navigate = useNavigate();
-  if (localStorage.getItem("sessionKey")) {
-    axios.post(process.env.REACT_APP_API + "/doctor/session", { "email": localStorage.getItem("email"), "sessionKey": localStorage.getItem("sessionKey") }).then(res => {
-      if (res.data.status === "authenticated") {
-        localStorage.setItem("sessionKey", res.data.sessionKey);
 
-        navigate("/doctor/dashboard");
-        localStorage.setItem("currentPage", "Basic");
-      }
-    })
+  if (localStorage.getItem("sessionKey") && localStorage.getItem("email")) {
+    navigate("/doctor/dashboard");
+    localStorage.setItem("currentPage", "Basic");
   }
 
   const [wrong, setWrong] = useState("");
+
   function handleLogin(event) {
-    axios.post(process.env.REACT_APP_API + "/doctor/login", { "email": event.target.email.value, "password": event.target.password.value }).then(res => {
-      if (res.data.status === "authenticated") {
-        navigate("/doctor/dashboard", { state: res.data.data });
-        localStorage.setItem("currentPage", "Basic");
-      } else if (res.data.status === "wrongPassword") {
-        setWrong("wrongPassword");
-      } else {
-        setWrong("emailNotRegistered");
-      }
-    })
     event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    if (email && password) {
+      localStorage.setItem("email", email);
+      localStorage.setItem("sessionKey", "doctor-session-" + Date.now());
+      localStorage.setItem("userRole", "doctor");
+      localStorage.setItem("name", email.split("@")[0]);
+      navigate("/doctor/dashboard");
+      localStorage.setItem("currentPage", "Basic");
+    } else {
+      setWrong("emailNotRegistered");
+    }
   }
 
   return (

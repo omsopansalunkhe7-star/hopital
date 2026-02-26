@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Hospital = require("../models/insurance");
+const InsuranceRequest = require("../models/insuranceRequest");
 
 router.post("/register", (req, res) => {
     const { email, password } = req.body;
@@ -38,6 +39,16 @@ router.post("/profile", (req, res) => {
     Hospital.findOneAndUpdate({ email }, { sessionKey, profile }, { new: true }).then((doc) => {
         res.json(doc);
     }).catch((err) => console.error(err));
+});
+
+
+
+// return all pending/previous insurance applications
+router.get("/requests", (req, res) => {
+    InsuranceRequest.find({}).then((data) => res.json(data)).catch((err) => {
+        console.error(err);
+        res.status(500).json({ status: "error" });
+    });
 });
 
 module.exports = router;
